@@ -4,7 +4,8 @@
   "description": "Aprendiendo NodeJS Express y Sequelize",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server"
+    "dev": "nodemon server",
+    "start": "node server"
   },
   "author": "Leandro Liggerini",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "nodemon": "^2.0.4",
     "pug": "^3.0.0",
     "sequelize": "^5.22.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

@@ -5,6 +5,8 @@ const routes = require('./routes');
 const configs = require('./config');
 const bodyParser = require('body-parser');
 
+require('dotenv').config({ path: 'variables.env' })
+
 
 //const db = require('./config/database');
 //db.authenticate()
@@ -49,4 +51,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Cargar las rutas
 app.use('/', routes());
 
-app.listen(3000);
+/* Puerto y host para la app */
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+
+app.listen(port, host, () => {
+    console.log('El servidor esta funcionando');
+});
