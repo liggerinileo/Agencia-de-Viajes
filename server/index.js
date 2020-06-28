@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const routes = require('./routes');
 const configs = require('./config');
+const bodyParser = require('body-parser');
 
 
 //const db = require('./config/database');
@@ -30,15 +31,20 @@ const config = configs[app.get('env')];
 // Creamos la variable para el sitio web
 app.locals.titulo = config.nombresitio;
 
-// Muestra el año actual
+// Muestra el año actual y genera la ruta
 app.use((req, res, next) => {
     // Crear una nueva fecha
     const fecha = new Date();
     // Creamos un nuevo objeto fechaActual
     res.locals.fechaActual = fecha.getFullYear();
+    // req.path devuelve lo que este despues de la / en la url
+    res.locals.ruta = req.path;
     // Para que siga ejecutando la proxima funcion
     return next();
 })
+
+//Ejecutamos el body-parser
+app.use(bodyParser.urlencoded({extended: true}));
 
 //Cargar las rutas
 app.use('/', routes());
